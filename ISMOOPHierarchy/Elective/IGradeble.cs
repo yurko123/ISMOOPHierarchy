@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISMOOPHierarchy
+namespace Elective
 {
     interface IGradeble
     {
-        int Grade100 { get; set; }
-        int Grade5 { get; }
+        byte Grade100 { get; set; }
+        byte Grade5 { get; }
         string GradeFive { get; }
         int PrintGrade();
 

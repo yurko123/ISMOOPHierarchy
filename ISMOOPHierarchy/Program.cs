@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Elective;
+using Exam;
+using Hospital;
+using Library;
+using Payment;
 
 namespace ISMOOPHierarchy
 {
@@ -18,19 +23,18 @@ namespace ISMOOPHierarchy
             Console.OutputEncoding = Encoding.GetEncoding(1251); // може буть несумісність кодувань
             Console.InputEncoding = Encoding.GetEncoding(1251);
         }
-        static void Main(string[] args)
+        public static void StartElective()
         {
-            ConsoleConfig("OOP");
             Console.WriteLine("type a name and last name of pupil");
             string name, lastname;
             Console.Write("Pupil`s name : ");
-            name= Console.ReadLine();
+            name = Console.ReadLine();
             Console.Write("Pupil`s lastname : ");
             lastname = Console.ReadLine();
-            Student New = new Student(name,lastname);
+            Student New = new Student(name, lastname);
             Console.WriteLine("enter number of courses ,course name,  teachers :name , lastname, fathername, experience in years and grade in course");
             Console.Write("number of courses: ");
-            int num=int.Parse(Console.ReadLine());
+            int num = int.Parse(Console.ReadLine());
             Course[] arr = new Course[num];
             for (int i = 0; i < num; i++)
             {
@@ -45,16 +49,78 @@ namespace ISMOOPHierarchy
                 Console.Write("teachers experience : ");
                 int texp = int.Parse(Console.ReadLine());
                 Console.Write("Grade : ");
-                int grade = int.Parse(Console.ReadLine());
+                byte grade = byte.Parse(Console.ReadLine());
                 arr[i] = new Course(crsname, tname, tlname, tfname, texp);
-                arr[i].Grade100=grade;
+                arr[i].Grade100 = grade;
             }
-       
+
 
 
 
             Arhive a = new Arhive(New, arr);
             a.Display();
+
+        }
+        public static void StartPayment()
+        {
+
+            Score x = new Score("Vasya", "Ivanov", "Petrovich", 756655, 5454543, "0000");
+            Score a = new Score("Vitya", "Corniychuk", "Azihmundovich", 13323, 543432, "1111");
+            x.putMoney(1000, "0000");
+            x.PayToScore(500, a, "0000");
+            Console.WriteLine(x.Cash);
+        }
+        public static void StartHospital()
+        {
+            Doctor x = new Doctor();
+            Patient n = new Patient();
+            n.Display();
+        }
+        public static void StartExams()
+        {
+            Exams[] mas=new Exams[2];
+           mas[0] = new Exams("Math", "Тетяна", "Николаева", "Євгенівна", 20, "Fiz-mat");
+           mas[0].Grade100 = 50;
+            mas[1] = new Exams("Math", "Тетяна", "Николаева", "Євгенівна", 20, "Fiz-mat");
+            mas[1].Grade100 = 100;
+            Matriculant New = new Matriculant(mas, "polishcuk", "yurii");
+           // New.Display();
+            ConsoleWriter.Write(New);
+            
+        }
+        public static void StartLibrary() {
+            Book mybook = new Book("gameoftrones", "vasya");
+            Reader myself = new Reader("yuriy", "kostyantinovich", mybook);
+            myself.Display();
+        }
+        static void Main(string[] args)
+        {
+            ConsoleConfig("OOP");
+            Console.WriteLine("Menu :\nChoice item\n1)Elective\n2)Payments\n3)Hospital\n4)Exams\n5)Library");
+            try { byte num = byte.Parse(Console.ReadLine());
+
+            switch (num)
+            {
+                case 1: StartElective();
+                    break;
+                case 2: StartPayment();
+                    break;
+                case 3: StartHospital();
+                    break;
+                case 4: StartExams();
+                    break;
+                case 5: StartLibrary();
+                    break;
+                default: Console.WriteLine("number out");
+                    break;
+            }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+        
             Console.ReadKey();
         }
     }

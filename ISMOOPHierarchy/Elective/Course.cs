@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISMOOPHierarchy
+namespace Elective
 {
     class Course : Teacher ,IGradeble
     {
         protected string NameCourse;
-        protected int Grade;
+        public byte Grade;
 
         public Course():base()
         {
@@ -22,7 +22,7 @@ namespace ISMOOPHierarchy
             Grade = 0;
         }
 
-        public int Grade100
+        public byte Grade100
         {
             get
             {
@@ -34,7 +34,7 @@ namespace ISMOOPHierarchy
                     Grade = value;
             }
         }
-        public int Grade5
+        public byte Grade5
         {
             get
             {

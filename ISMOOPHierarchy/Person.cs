@@ -43,6 +43,7 @@ namespace ISMOOPHierarchy
 
         public string GetFullName()
         { return lastName + ' ' + firstName + ' ' + fatherName; }
+       
         public abstract void Display();
         
     }
