@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleWriter.cs" />
+    <Compile Include="Extension.cs" />
     <Compile Include="Library\Book.cs" />
     <Compile Include="Exams\Exams.cs" />
     <Compile Include="Hospital\Doctor.cs" />

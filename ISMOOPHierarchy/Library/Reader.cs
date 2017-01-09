@@ -7,7 +7,7 @@ using ISMOOPHierarchy;
 
 namespace Library
 {
-    class Reader:Person
+    class Reader:Person,ICloneable,IComparable
     {
        
         protected Book book;
@@ -20,7 +20,18 @@ namespace Library
         }
 
 
-        
+        public object Clone()
+        {
+            Book a = new Book("def", "def");
+            return new Reader ("unknown","unknown",a){birthDay = this.birthDay, book = (Book)this.book.Clone(), fatherName = this.fatherName, firstName = this.firstName, lastName = this.lastName };
+        }
+        public int CompareTo(object o)
+        {
+            Reader r = o as Reader;
+            if (r != null)
+                return this.firstName.CompareTo(r.firstName);
+            else throw new Exception("error dont compare");
+        }
         public override void Display()
         {
             Console.Write("Reader is: {0} {1} Book is: \"{2}\"", firstName, lastName, book.nameBook);

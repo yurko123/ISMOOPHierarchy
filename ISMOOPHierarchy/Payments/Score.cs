@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Payment
 {
-    class Score:Client
+    class Score:Client,ICloneable,IComparable
     {
         protected uint NumAccount;
         protected uint NumCreditCard;
@@ -73,7 +73,17 @@ namespace Payment
             }
             else return false;
         }
-        
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        public int CompareTo(object o)
+        {
+            Score s = o as Score;
+            if (s != null)
+                return this.Cash.CompareTo(s.Cash);
+            else throw new Exception("error dont compare");
+        }
 
 
     }

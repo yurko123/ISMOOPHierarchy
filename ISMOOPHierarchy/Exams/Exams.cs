@@ -7,7 +7,7 @@ using Elective;
 
 namespace Exam
 {
-    class Exams:Course
+    class Exams:Course,ICloneable,IComparable
     {
         protected string faculty;
         public Exams(string examName, string teachersFirstName, string teachersLastName, string teachersFatherName, int experience, string faculty)
@@ -18,6 +18,17 @@ namespace Exam
             
 
         }
+       public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+       public int CompareTo(object o)
+       {
+           Exams e = o as Exams;
+           if (e != null)
+               return this.faculty.CompareTo(e.faculty);
+           else throw new Exception("error dont compare");
+       }
         public override void Display()
         {
             Console.WriteLine("Teacher Is : {0} {1}  Experience: {2}", firstName, fatherName, experience);

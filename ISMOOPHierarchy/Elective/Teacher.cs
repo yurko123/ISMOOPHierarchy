@@ -7,9 +7,9 @@ using ISMOOPHierarchy;
 
 namespace Elective
 {
-    class Teacher:Person
+    class Teacher:Person,ICloneable,IComparable
     {
-        protected int experience { get; set; }
+        public int experience { get; set; }
 
 
         public Teacher():base()
@@ -45,8 +45,22 @@ namespace Elective
         {
             this.experience = experience;
         }
+        public static implicit operator int(Teacher t)
+        {
+            return t.experience;
+        }
 
-
+        public object Clone()
+        {
+            return new Teacher { firstName = this.firstName, lastName = this.lastName, fatherName = this.fatherName, birthDay = this.birthDay, experience = this.experience };
+        }
+        public int CompareTo(object o)
+        {
+            Teacher t = o as Teacher;
+            if (t != null)
+                return this.firstName.CompareTo(t.firstName);
+            else throw new Exception("error dont compare");
+        }
 
         public override void Display()
         {
@@ -54,7 +68,7 @@ namespace Elective
         }
         public override string ToString()
         {
-            return firstName + ' ' + fatherName;
+            return firstName + " " + fatherName;
         }
     }
 }

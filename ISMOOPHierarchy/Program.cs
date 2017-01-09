@@ -53,17 +53,15 @@ namespace ISMOOPHierarchy
                 arr[i] = new Course(crsname, tname, tlname, tfname, texp);
                 arr[i].Grade100 = grade;
             }
-
-
-
-
+            Book t = new Book("sdas", "sda");
             Arhive a = new Arhive(New, arr);
             a.Display();
-
+            Arhive b = (Arhive)a.Clone();
+            a.Display();
         }
         public static void StartPayment()
         {
-
+            Teacher q = new Teacher();
             Score x = new Score("Vasya", "Ivanov", "Petrovich", 756655, 5454543, "0000");
             Score a = new Score("Vitya", "Corniychuk", "Azihmundovich", 13323, 543432, "1111");
             x.putMoney(1000, "0000");
@@ -73,16 +71,22 @@ namespace ISMOOPHierarchy
         public static void StartHospital()
         {
             Doctor x = new Doctor();
-            Patient n = new Patient();
+            Doctor y = new Doctor();
+            Patient n = new Patient("vassy","sdsd","sdsds",x,y,"сancer");
+            Patient q = (Patient)n.Clone();
+            q.doctor.firstName = "sfdfsd";
             n.Display();
         }
         public static void StartExams()
         {
-            Exams[] mas=new Exams[2];
+            Exams[] mas=new Exams[3];
            mas[0] = new Exams("Math", "Тетяна", "Николаева", "Євгенівна", 20, "Fiz-mat");
            mas[0].Grade100 = 50;
             mas[1] = new Exams("Math", "Тетяна", "Николаева", "Євгенівна", 20, "Fiz-mat");
             mas[1].Grade100 = 100;
+            mas[2]=(Exams)mas[1].Clone();
+            mas[2].Grade100 = 0;
+            mas[2].Display();
             Matriculant New = new Matriculant(mas, "polishcuk", "yurii");
            // New.Display();
             ConsoleWriter.Write(New);
@@ -91,7 +95,10 @@ namespace ISMOOPHierarchy
         public static void StartLibrary() {
             Book mybook = new Book("gameoftrones", "vasya");
             Reader myself = new Reader("yuriy", "kostyantinovich", mybook);
+            Reader a = (Reader)myself.Clone();
             myself.Display();
+            Console.WriteLine();
+            a.Display();
         }
         static void Main(string[] args)
         {

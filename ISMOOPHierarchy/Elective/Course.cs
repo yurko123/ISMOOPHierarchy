@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam;
 
 namespace Elective
 {
-    class Course : Teacher ,IGradeble
+    class Course : Teacher ,IGradeble,ICloneable,IComparable
     {
         protected string NameCourse;
         public byte Grade;
@@ -67,6 +68,18 @@ namespace Elective
         {
             return Grade;
             
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        public int CompareTo(object o)
+        {
+            Course c = o as Course;
+            if (c != null)
+                return this.NameCourse.CompareTo(c.NameCourse);
+            else throw new Exception("error dont compare");
         }
         
         public override void Display()

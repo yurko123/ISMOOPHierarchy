@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    class Book
+    class Book:ICloneable,IComparable
     {
         public string nameBook;
         public string Author;
@@ -15,6 +15,17 @@ namespace Library
         {
             this.nameBook=nameBook;
             this.Author=Author;
+        }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        public int CompareTo(object o)
+        {
+            Book b = o as Book;
+            if (b != null)
+                return this.nameBook.CompareTo(b.nameBook);
+            else throw new Exception("error dont compare");
         }
         public void Display()
         {

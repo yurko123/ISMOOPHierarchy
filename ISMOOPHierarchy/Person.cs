@@ -8,10 +8,10 @@ namespace ISMOOPHierarchy
 {
     abstract class Person
     {
-        protected string firstName;
-        protected string lastName;
-        protected string fatherName;
-        protected DateTime birthDay;
+        public string firstName;
+        public string lastName;
+        public string fatherName;
+        public DateTime birthDay;
         public Person()
         {
             firstName = "unknown";
@@ -39,7 +39,7 @@ namespace ISMOOPHierarchy
         {
             this.birthDay = birthDay;
         }
-
+       
 
         public string GetFullName()
         { return lastName + ' ' + firstName + ' ' + fatherName; }

@@ -7,7 +7,7 @@ using ISMOOPHierarchy;
 
 namespace Elective
 {
-    class Student:Person
+    class Student:Person,ICloneable,IComparable
     {
         
         
@@ -64,6 +64,17 @@ namespace Elective
         }
 
 
+        public object Clone()
+        {
+            return new Student { firstName = this.firstName, lastName = this.lastName, fatherName = this.fatherName, birthDay = this.birthDay,GradeBookNum=this.GradeBookNum,PhoneNumber=this.PhoneNumber};
+        }
+        public int CompareTo(object o)
+        {
+            Student s = o as Student;
+            if (o != null)
+                return this.firstName.CompareTo(s.firstName);
+            else throw new Exception("error dont compare");
+        }
         public override void Display()
         {
             Console.WriteLine("Student Is : {0} {1}", lastName, firstName);

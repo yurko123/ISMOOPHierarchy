@@ -7,10 +7,10 @@ using ISMOOPHierarchy;
 
 namespace Hospital
 {
-    class Patient : Person
+    class Patient : Person,ICloneable,IComparable
     {
-        protected Doctor doctor;
-        protected Doctor secondDoctor;
+        public Doctor doctor;
+        public Doctor secondDoctor;
         protected bool discharged;
         protected string destination;
 
@@ -29,6 +29,17 @@ namespace Hospital
         public void dischargedPatient()
         {
             discharged = true;
+        }
+        public object Clone()
+        {
+            return new Patient { birthDay = this.birthDay, destination = this.destination, discharged = this.discharged, fatherName = this.fatherName, firstName = this.firstName, lastName = this.lastName, doctor = (Doctor)this.doctor.Clone(), secondDoctor = (Doctor)this.secondDoctor.Clone() };
+        }
+        public int CompareTo(object o)
+        {
+            Patient p = o as Patient;
+            if (p != null)
+                return this.firstName.CompareTo(p.firstName);
+            else throw new Exception("error dont compare");
         }
         public override void Display()
         {

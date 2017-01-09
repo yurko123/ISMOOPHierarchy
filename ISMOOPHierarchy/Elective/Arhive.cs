@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Elective
 {
-    class Arhive
+    class Arhive:ICloneable,IComparable
     {
         protected Student student;
         protected Course[] course;
@@ -22,7 +22,13 @@ namespace Elective
             this.student = student;
             this.course = course;
         }
-
+        public int CompareTo(object o)
+        {
+            Arhive a = o as Arhive;
+            if (a != null)
+                return this.student.firstName.CompareTo(a.student.firstName);
+            else throw new Exception("error dont compare");
+        }
         public void Display()
         {
             student.Display();
@@ -30,6 +36,11 @@ namespace Elective
                 course[i].Display();
 
         }
+        public object Clone()
+        {
+            return new Arhive { student = this.student, course = this.course };
+        }
+       
 
         
     }
